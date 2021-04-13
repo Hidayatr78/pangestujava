@@ -1,0 +1,45 @@
+#skills {
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+
+#about {
+  padding-top: 6rem;
+  padding-bottom: 10rem;
+}
+
+.home {
+  padding-top: 9rem;
+}
+
+.jumbotron {
+  background-color: #004445;
+  padding-bottom: 3rem;
+}
+
+.display-4 {
+  color: #fff;
+}
+path.gelombang {
+  color: #004445;
+  fill: #004445;
+}
+
+#nama {
+  color: #fff;
+}
+
+.nama {
+  color: #fff;
+}
+
+#project {
+  padding-top: 6rem;
+}
+
+.lead {
+  color: #fff;
+}
+.navbar {
+  background-color: #004445;
+}
