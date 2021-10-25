@@ -24,22 +24,27 @@ class Keahlian_model extends Model
             ->orderBy('id_keahlian', 'DESC')
             ->get()->getResultArray();
     }
+    public function listing2()
+    {
+        return $this->db->table('keahlian')
+            ->get()->getRowArray();
+    }
     public function edit($data)
     {
         $this->db->table('keahlian')->where('id_keahlian', $data['id_keahlian'])->update($data);
     }
 
-    public function detail_data($deskripsi_keahlian)
+    public function detail_data($deskripsi)
     {
         return $this->db->table('keahlian')
-            ->where('deskripsi_keahlian', $deskripsi_keahlian)
+            ->where('deskripsi', $deskripsi)
             ->get()
             ->getRowArray();
     }
 
     public function hapus($data)
     {
-        $this->db->table('keahlian')->where('deskripsi_keahlian', $data['deskripsi_keahlian'])->delete($data);
+        $this->db->table('keahlian')->where('nama_keahlian', $data['nama_keahlian'])->delete($data);
     }
 
     public function tambah($data)

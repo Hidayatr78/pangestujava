@@ -48,6 +48,7 @@
 <script src="<?= base_url() ?>/admin1/dist/js/demo.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url() ?>/admin1/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?= base_url() ?>/admin1/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 

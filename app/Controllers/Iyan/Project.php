@@ -58,7 +58,7 @@ class Project extends BaseController
                 $files = $this->request->getFiles();
                 $path = "./upload/image/project/";
                 $file = $this->request->getFile('gambar_project');
-                if (!empty($files['gambar_project'])) {
+                if (!empty($_FILES['gambar_project'])) {
                     $user = $this->Project_model->detail_data2($deskripsi_project);
                     if ($user['gambar_project'] != "") {
                         unlink('upload/image/project/' . $user['gambar_project']);
@@ -162,18 +162,18 @@ class Project extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function delete($deskripsi_project, $id_project)
+    public function delete($deskripsi_project)
     {
         $user = $this->Project_model->detail_data2($deskripsi_project);
-        $gambar = $this->Project_model->detail_data4($id_project);
-        if ($user['gambar_project'] != "" && $gambar['gambar'] != "") {
+        // $gambar = $this->Project_model->detail_data4($id_project);
+        if ($user['gambar_project'] != "") {
             unlink('upload/image/project/' . $user['gambar_project']);
-            unlink('upload/image/project/thumbs/' . $gambar['gambar']);
+            // unlink('upload/image/project/thumbs/' . $gambar['gambar']);
         }
         $data = array(
             // 'project'       => $project,
-            'deskripsi_project'     => $deskripsi_project,
-            'id_project'            => $id_project
+            'deskripsi_project'     => $deskripsi_project
+            // 'id_project'            => $id_project
         );
         $this->Project_model->hapus($data);
         session()->setflashdata('pesan', 'Successfully Delete Data');
@@ -216,28 +216,19 @@ class Project extends BaseController
                 $files = $this->request->getFiles();
                 $path = "./upload/image/project/";
                 $file = $this->request->getFile('gambar_project');
-                if (!empty($files['gambar_project'])) {
-                    foreach ($files['gambar_project'] as $file) {
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $file->move($path);
-                            $fileName = $file->getName();
-                            $data['gambar_project'] = $fileName;
-                        }
+                foreach ($files['gambar_project'] as $file) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $file->move($path);
+                        $fileName = $file->getName();
+                        $data['gambar_project'] = $fileName;
                     }
-                    $i              = $this->request;
-                    $data = array(
-                        'nama_project'         => $i->getPost('nama_project'),
-                        'deskripsi_project'    => $i->getPost('deskripsi'),
-                        'gambar_project'      => $file->getName()
-                    );
-                } else {
-                    $i              = $this->request;
-                    $data = array(
-                        'nama_project'        => $i->getPost('nama_project'),
-                        'deskripsi_project'   => $i->getPost('deskripsi'),
-                        'gambar_project'      => $i->getPost('2')
-                    );
                 }
+                $i              = $this->request;
+                $data = array(
+                    'nama_project'         => $i->getPost('nama_project'),
+                    'deskripsi_project'    => $i->getPost('deskripsi'),
+                    'gambar_project'      => $file->getName()
+                );
                 $this->Project_model->tambah($data);
                 session()->setflashdata('pesan', 'Successfully Updated Data');
                 return redirect()->to(base_url('iyan/project'));

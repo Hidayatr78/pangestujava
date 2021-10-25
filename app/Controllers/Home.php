@@ -7,6 +7,8 @@ use App\Models\Biodata_model;
 use App\Models\Keahlian_model;
 use App\Models\Project_model;
 use App\Models\Kontak_model;
+use App\Models\Sekolah_model;
+use App\Models\Pengalaman_model;
 
 
 
@@ -20,40 +22,32 @@ class Home extends BaseController
 		$this->Keahlian_model = new Keahlian_model();
 		$this->Project_model = new Project_model();
 		$this->Kontak_model = new Kontak_model();
+		$this->Sekolah_model = new Sekolah_model();
+		$this->Pengalaman_model = new Pengalaman_model();
 	}
 
 	public function index()
 	{
 		$biodata = $this->Biodata_model->listing();
-		$project = $this->Project_model->listing();
+		$sekolah = $this->Sekolah_model->listing();
+		$pengalaman = $this->Pengalaman_model->listing();
+		// $project = $this->Project_model->listing();
 		$konfigurasi = $this->Konfigurasi_model->listing();
 		$keahlian = $this->Keahlian_model->listing();
 		$data = array(
-			'title'				=> $biodata['nama'] . ' | ' . $konfigurasi['tagline'],
-			'web'          		=> 'Pangestu',
-			'web2'				=> 'Java',
+			'title'		=> $biodata['nama'] . ' | ' . $konfigurasi['tagline'],
+			'web'          	=> 'Pangestu',
+			'web2'			=> 'Java',
 			'keywords'   		=> $konfigurasi['keywords'],
 			'deskripsi'  		=> $konfigurasi['deskripsi'],
 			'isi'        		=> 'home/list',
-			'project'			=> $project,
-			'keahlian'			=> $keahlian,
-			'konfigurasi'       => $konfigurasi,
-			'biodata'           => $biodata,
+			// 'project'		=> $project,
+			'keahlian'		=> $keahlian,
+			'konfigurasi'        => $konfigurasi,
+			'biodata'            => $biodata,
+			'sekolah'            => $sekolah,
+			'pengalaman'		=> $pengalaman
 		);
 		return view('layout/wrapper', $data);
 	}
-
-	// public function add()
-	// {
-	// 	$i              = $this->request;
-	// 	$data = array(
-	// 		// 'id_konfigurasi'             => $id_konfigurasi,
-	// 		'nama'                    => $i->getPost('nama'),
-	// 		'email'                   => $i->getPost('email'),
-	// 		'pesan'                  => $i->getPost('kontak')
-	// 	);
-	// 	$this->Kontak_model->tambah($data);
-	// 	session()->setflashdata('pesan', 'Successfully Submit Data');
-	// 	return redirect()->to(base_url('/'));
-	// }
 }

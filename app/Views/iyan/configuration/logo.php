@@ -40,7 +40,6 @@
             <div class="input-group">
                 <div class="custom-file">
                     <input type="file" multiple name="logo[]" id="logo" name="logo[]" value="<?= $konfigurasi['logo']; ?>">
-                    <input type="hidden" multiple name="logo2[]" name="logo2" id="logo2" value="<?= $konfigurasi['logo']; ?>">
                 </div>
             </div>
         </div>
@@ -53,7 +52,7 @@
         </div>
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </div>
     <?php echo form_close() ?>

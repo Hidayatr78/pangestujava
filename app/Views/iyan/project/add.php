@@ -44,7 +44,7 @@
         </div>
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-danger">Reset</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </form>

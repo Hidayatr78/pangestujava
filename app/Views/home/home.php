@@ -11,8 +11,8 @@
                 <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
                 <div class="typed-text d-none"><?= $biodata['ahli']; ?></div>
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                    <a href="#about" class="btn btn-outline-light mr-5">About Me</a>
-                    <button type="button" class="btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/E814H7Px9Go" data-target="#videoModal">
+                    <!-- <a href="#about" class="btn btn-outline-light mr-5" id="navbarCollapse">About Me</a> -->
+                    <button type="button" class="btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/<?= $biodata['link']; ?>" data-target="#videoModal">
                         <span></span>
                     </button>
                     <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>

@@ -16,8 +16,8 @@
             <span class="px-3">|</span>
             <a class="text-white" href="#">Help</a>
         </div> -->
-        <p class="m-0">Copyright &copy; <?php echo date("Y"); ?> <a class="text-white font-weight-bold" href="<?= $biodata['ig']; ?>"><?= $konfigurasi['namaweb']; ?></a>. All Rights Reserved.
-            <!-- Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a> -->
+        <p class="m-0">&copy; <?php echo date("Y"); ?> <a class="text-white font-weight-bold" href="<?= $biodata['ig']; ?>"><?= $konfigurasi['namaweb']; ?></a>. All Rights Reserved.
+            Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
         </p>
     </div>
 </div>
@@ -39,6 +39,7 @@
 <script src="<?= base_url() ?>/user/lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="<?= base_url() ?>/user/lib/isotope/isotope.pkgd.min.js"></script>
 <script src="<?= base_url() ?>/user/lib/lightbox/js/lightbox.min.js"></script>
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
 
 <!-- Contact Javascript File -->
 <script src="<?= base_url() ?>/user/mail/jqBootstrapValidation.min.js"></script>

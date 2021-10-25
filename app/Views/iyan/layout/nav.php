@@ -23,28 +23,60 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a href="<?= base_url('iyan/expertise') ?>" class="nav-link">
+                        <a href="#" class="nav-link">
+                            <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="loop" colors="primary:#c2c7d0,secondary:#c2c7d0">
+                            </lord-icon>
+                            <p>
+                                Biodata
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('iyan/biodata/about') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>About 1</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('iyan/biodata') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>About 2</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('iyan/education') ?>" class="nav-link">
+                            <i class="fas  fa-graduation-cap nav-icon"></i>
+                            <p>Education</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('iyan/experience') ?>" class="nav-link">
+                            <lord-icon src="https://cdn.lordicon.com/fhtaantg.json" trigger="loop" colors="primary:#c2c7d0,secondary:#c2c7d0">
+                            </lord-icon>
+                            <p>Expericence</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('iyan/skill') ?>" class="nav-link">
                             <i class="nav-icon fas fa-laptop"></i>
                             <p>
-                                Expertise
+                                Skill
                             </p>
                         </a>
                     </li>
 
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('iyan/project') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
+                            <lord-icon src="https://cdn.lordicon.com/jvucoldz.json" trigger="loop" colors="primary:#c2c7d0,secondary:#000000">
+                            </lord-icon>
                             <p>
                                 Project
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item has-treeview">
-                        <a href="<?= base_url('iyan/biodata') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-user-alt"></i>
-                            <p>
-                                Biodata
                             </p>
                         </a>
                     </li>
@@ -60,19 +92,19 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="<?= base_url('iyan/configuration') ?>" class="nav-link">
-                                    <i class="fas fa-cog nav-icon"></i>
+                                    <i class="far fa-circle nav-icon"></i>
                                     <p>General Configuration</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url('iyan/configuration/logo') ?>" class="nav-link">
-                                    <i class="fa fa-image nav-icon"></i>
+                                    <i class="far fa-circle nav-icon"></i>
                                     <p>Logo Configuration</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url('iyan/configuration/icon') ?>" class="nav-link">
-                                    <i class="fa fa-camera-retro nav-icon"></i>
+                                    <i class="far fa-circle nav-icon"></i>
                                     <p>Icon Configuration</p>
                                 </a>
                             </li>
@@ -81,7 +113,8 @@
 
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('iyan/login/logout') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <lord-icon src="https://cdn.lordicon.com/gazjnoea.json" trigger="loop" colors="primary:#c2c7d0,secondary:#c2c7d0">
+                            </lord-icon>
                             <p>Logout</p>
                         </a>
                     </li>

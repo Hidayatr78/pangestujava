@@ -24,19 +24,18 @@ class Biodata extends BaseController
         if ($this->request->getMethod() == 'post') {
             $rules = [
                 'gambar' => [
-                    'rules'  => 'mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,2000]|is_image[gambar]|max_dims[gambar,500,500]',
+                    'rules'  => 'mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,40000]|is_image[gambar]|max_dims[gambar,500,500]',
                     'errors' => [
                         'mime_in'  => 'Not a Picture !!!',
                         'max_size' => 'Oversize !!!',
                         'is_image' => 'Not a Picture !!!',
-                        'max_dims' => 'Height and Width Exceeding 240x240'
+                        'max_dims' => 'Height and Width Exceeding 1000 X 1000'
                     ]
                 ]
             ];
             if ($this->validate($rules)) {
                 $files = $this->request->getFiles();
                 $path = "./upload/image/bio/";
-                // $imageservice = \Config\Services::image();
                 $file = $this->request->getFile('gambar');
                 if (!empty($files['gambar'])) {
                     $user = $this->Biodata_model->detail_data($id_biodata);
@@ -53,10 +52,8 @@ class Biodata extends BaseController
                     $i              = $this->request;
                     $data = array(
                         'id_biodata'                    => $id_biodata,
-                        'nama'                          => $i->getPost('nama'),
                         'panggilan'                     => $i->getPost('panggilan'),
                         'saya'                          => $i->getPost('about'),
-                        'ahli'                          => $i->getPost('ahli'),
                         'alamat'                        => $i->getPost('alamat'),
                         'email'                         => $i->getPost('email'),
                         'telpon'                        => $i->getPost('telpon'),
@@ -70,10 +67,8 @@ class Biodata extends BaseController
                     $i              = $this->request;
                     $data = array(
                         'id_biodata'                    => $id_biodata,
-                        'nama'                          => $i->getPost('nama'),
                         'panggilan'                     => $i->getPost('panggilan'),
                         'saya'                          => $i->getPost('about'),
-                        'ahli'                          => $i->getPost('ahli'),
                         'alamat'                        => $i->getPost('alamat'),
                         'email'                         => $i->getPost('email'),
                         'telpon'                        => $i->getPost('telpon'),
@@ -97,6 +92,74 @@ class Biodata extends BaseController
             'biodata'       => $biodata,
             'konfigurasi'   => $konfigurasi,
             'isi'           => 'iyan/biodata/list'
+        );
+        return view('iyan/layout/wrapper', $data);
+    }
+
+    public function about()
+    {
+        $konfigurasi = $this->Konfigurasi_model->listing();
+        $biodata = $this->Biodata_model->listing();
+        $id_biodata = $this->request->getPost('id');
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                'profil' => [
+                    'rules'  => 'mime_in[profil,image/jpg,image/jpeg,image/png]|max_size[profil,40000]|is_image[profil]',
+                    'errors' => [
+                        'mime_in'  => 'Not a Picture !!!',
+                        'max_size' => 'Oversize !!!',
+                        'is_image' => 'Not a Picture !!!',
+                        'max_dims' => 'Height and Width Exceeding 1000 X 1000'
+                    ]
+                ]
+            ];
+            if ($this->validate($rules)) {
+                $files = $this->request->getFiles();
+                $path = "./upload/image/bio/";
+                $file = $this->request->getFile('profil');
+                if (!empty($files['profil'])) {
+                    $user = $this->Biodata_model->detail_data($id_biodata);
+                    if ($user['profil'] != "") {
+                        unlink('upload/image/bio/' . $user['profil']);
+                    }
+                    foreach ($files['profil'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $file->move($path);
+                            $fileName = $file->getName();
+                            $data['profil'] = $fileName;
+                        }
+                    }
+                    $i              = $this->request;
+                    $data = array(
+                        'id_biodata'               => $id_biodata,
+                        'nama'                     => $i->getPost('nama'),
+                        'ahli'                     => $i->getPost('ahli'),
+                        'link'                     => $i->getPost('link'),
+                        'profil'                   => $file->getName()
+                    );
+                } else {
+                    $i              = $this->request;
+                    $data = array(
+                        'id_biodata'               => $id_biodata,
+                        'nama'                     => $i->getPost('nama'),
+                        'ahli'                     => $i->getPost('ahli'),
+                        'link'                     => $i->getPost('link')
+                    );
+                }
+                $this->Biodata_model->edit($data);
+                session()->setflashdata('pesan', 'Successfully Updated Data');
+                return redirect()->to(base_url('iyan/biodata/about'));
+            } else {
+                $data['validation'] = $this->validator;
+            }
+        }
+        $data = array(
+            'title'         => 'Biodata',
+            'web'           => 'PangestuJava',
+            'jenis'         => 'Form Biodata',
+            'biodata'       => $biodata,
+            'konfigurasi'   => $konfigurasi,
+            'isi'           => 'iyan/biodata/about'
         );
         return view('iyan/layout/wrapper', $data);
     }

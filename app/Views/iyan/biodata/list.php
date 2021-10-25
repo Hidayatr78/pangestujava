@@ -1,4 +1,3 @@
-<!-- Main content -->
 <div class="card-body">
     <?php
     if (session()->getflashdata('pesan')) {
@@ -18,11 +17,6 @@
         <?php endif; ?>
 
         <div class="form-group">
-            <label for="nama">Name</label>
-            <input type="text" name="nama" class="form-control" id="nama" placeholder="Name" value="<?= $biodata['nama']; ?>">
-        </div>
-
-        <div class="form-group">
             <label for="panggilan">Nick Name (Call)</label>
             <input type="text" name="panggilan" class="form-control" id="panggilan" placeholder="Nick Name (Call)" value="<?= $biodata['panggilan']; ?>">
         </div>
@@ -30,11 +24,6 @@
         <div class="form-group">
             <label for="about">About Me</label>
             <textarea class="textarea form-control" name="about" id="about" placeholder="About Me"><?= $biodata['saya']; ?></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="ahli">Expertise</label>
-            <input type="text" name="ahli" class="form-control" id="ahli" placeholder="Expertise" value="<?= $biodata['ahli']; ?>">
         </div>
 
         <div class="form-group">
@@ -84,11 +73,11 @@
         <div class="form-group">
             <label for="gambar">Current Picture: </label>
             <div class="input-group">
-                <img src="<?php echo base_url('/upload/image/bio/' . $biodata['gambar']) ?>" class="img img-responsive img-thumbnail " width="150">
+                <img src="<?= base_url('/upload/image/bio/' . $biodata['gambar']) ?>" class="img img-responsive img-thumbnail " width="150">
             </div>
         </div>
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </form>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 /**
@@ -23,9 +24,11 @@ class BaseController extends Controller
 	 * An array of helpers to be loaded automatically upon
 	 * class instantiation. These helpers will be available
 	 * to all other controllers that extend BaseController.
+	 * Instance of the main Request object.
 	 *
-	 * @var array
+	 * @var HTTP\IncomingRequest
 	 */
+	protected $request;
 	protected $helpers = [];
 
 	/**
@@ -42,5 +45,4 @@ class BaseController extends Controller
 		// E.g.:
 		// $this->session = \Config\Services::session();
 	}
-
 }

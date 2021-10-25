@@ -77,7 +77,7 @@ class Configuration extends BaseController
         if ($this->validate([
             'logo' => [
                 'label'  => 'Logo',
-                'rules'  => 'mime_in[logo,image/jpg,image/jpeg,image/png]|max_size[logo,2000]|is_image[logo]|max_dims[logo,250,250]',
+                'rules'  => 'mime_in[logo,image/jpg,image/jpeg,image/png]|max_size[logo,2000]|is_image[logo]',
                 'errors' => [
                     'mime_in'  => 'Not a Picture !!!',
                     'max_size' => 'Oversize !!!',
@@ -111,8 +111,7 @@ class Configuration extends BaseController
                 $i = $this->request;
                 $data = [
                     'id_konfigurasi'        => $id_konfigurasi,
-                    'namaweb'               => $i->getPost('namaweb'),
-                    'logo'                  => $logo
+                    'namaweb'               => $i->getPost('namaweb')
                 ];
             }
             $this->Konfigurasi_model->edit($data);

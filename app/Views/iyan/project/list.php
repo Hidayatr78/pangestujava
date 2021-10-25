@@ -45,7 +45,7 @@
                     <td>
                         <a href="<?php echo base_url('iyan/project/image/' . $project['id_project']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-image"></i> Image</a>
                         <a href="<?php echo base_url('iyan/project/edit/' . $project['deskripsi_project']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                        <a href="<?php echo base_url('iyan/project/delete/' . $project['deskripsi_project'] . '/' . $project['id_project']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<?php echo base_url('iyan/project/delete/' . $project['deskripsi_project']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
             <?php $no++;

@@ -75,7 +75,7 @@ class Registration extends BaseController
 				);
 				$this->Admin_model->tambah($data);
 				session()->setflashdata('pesan', 'Successfully Registered');
-				return redirect()->to(base_url('daftar'));
+				return redirect()->to(base_url('iyan/login'));
 			} else {
 				$data['validation'] = $this->validator;
 			}
