@@ -33,7 +33,6 @@ class Skill extends BaseController
             'konfigurasi'   => $konfigurasi,
             'biodata'       => $biodata,
             'isi'           => 'iyan/skill/list',
-            'validation'    => $this->validator
         );
         return view('iyan/layout/wrapper', $data);
     }
@@ -44,17 +43,28 @@ class Skill extends BaseController
         $konfigurasi = $this->Konfigurasi_model->listing();
         $keahlian = $this->Keahlian_model->listing();
         if ($this->request->getMethod() == 'post') {
-            $i              = $this->request;
-            $data = array(
-                'nama_keahlian' => $i->getPost('nama_keahlian'),
-                'ahli'          => $i->getPost('ahli'),
-                'skor'          => $i->getPost('skor')
-            );
-            $this->Keahlian_model->tambah($data);
-            session()->setflashdata('pesan', 'Successfully Add Data');
-            return redirect()->to(base_url('iyan/skill'));
-        } else {
-            $data['validation'] = $this->validator;
+            $rules = [
+                'nama_keahlian' => [
+                    'nama_keahlian'  => 'is_unique[keahlian.nama_keahlian]',
+                    'errors' => [
+                        'is_unique'  => 'Skill Name already exists !!!',
+                    ]
+                ]
+            ];
+            if ($this->validate($rules)) {
+                $i              = $this->request;
+                $data = array(
+                    'nama_keahlian' => $i->getPost('nama_keahlian'),
+                    'ahli'          => $i->getPost('ahli'),
+                    'warna'         => $i->getPost('warna'),
+                    'skor'          => $i->getPost('skor')
+                );
+                $this->Keahlian_model->tambah($data);
+                session()->setflashdata('pesan', 'Successfully Add Data');
+                return redirect()->to(base_url('iyan/skill'));
+            } else {
+                $data['validation'] = $this->validator;
+            }
         }
         //Jika tidak valid
         $data = array(
@@ -70,32 +80,30 @@ class Skill extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function edit($deskripsi)
+    public function edit($nama_keahlian)
     {
-        $keahlian = $this->Keahlian_model->detail_data($deskripsi);
+        $keahlian = $this->Keahlian_model->detail_data($nama_keahlian);
         $biodata = $this->Biodata_model->listing();
         $konfigurasi = $this->Konfigurasi_model->listing();
         if ($this->request->getMethod() == 'post') {
             $i              = $this->request;
             $data = array(
-                'id_keahlian'     => $i->getPost('id_keahlian'),
-                'bidang'            => $i->getPost('bidang'),
-                'institusi'         => $i->getPost('institusi'),
-                'thn_masuk'         => $i->getPost('tahun'),
-                'deskripsi'         => $i->getPost('deskripsi')
+                'id_keahlian'   => $i->getPost('id'),
+                'nama_keahlian' => $i->getPost('nama_keahlian'),
+                'ahli'          => $i->getPost('ahli'),
+                'warna'         => $i->getPost('warna'),
+                'skor'          => $i->getPost('skor')
             );
             $this->Keahlian_model->edit($data);
             session()->setflashdata('pesan', 'Successfully Updated Data');
             return redirect()->to(base_url('iyan/skill'));
-        } else {
-            $data['validation'] = $this->validator;
         }
         //Jika tidak valid
         $data = array(
             'title'         => 'Skill',
             'web'           => 'PangestuJava',
-            'jenis'         => 'Edit Skill: ' . $keahlian['institusi'],
-            'keahlian'       => $keahlian,
+            'jenis'         => 'Edit Skill: ' . $keahlian['nama_keahlian'],
+            'keahlian'      => $keahlian,
             'konfigurasi'   => $konfigurasi,
             'biodata'       => $biodata,
             'isi'           => 'iyan/skill/edit',

@@ -21,11 +21,17 @@ class Kontak_model extends Model
     public function listing()
     {
         return $this->db->table('kontak')
-            ->get()->getRowArray();
+            ->get()->getResultArray();
     }
 
     public function tambah($data)
     {
         $this->db->table('kontak')->insert($data);
+    }
+
+    //Hapus field database
+    public function hapus($data)
+    {
+        $this->db->table('kontak')->where('id_kontak', $data['id_kontak'])->delete($data);
     }
 }

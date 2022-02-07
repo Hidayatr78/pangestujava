@@ -30,13 +30,29 @@
         </div>
 
         <div class="form-group">
-            <label for="ahli">Level</label>
-            <input type="text" name="ahli" class="form-control" id="ahli" placeholder="Grade Of Skill" required>
+            <label>Level</label>
+            <select class="custom-select" name="ahli">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Color</label>
+            <select class="custom-select" name="warna">
+                <option value="bg-primary">Blue</option>
+                <option value="bg-danger">Red</option>
+                <option value="bg-dark">Black</option>
+                <option value="bg-info">Blue</option>
+                <option value="bg-warning">Yellow</option>
+                <option value="bg-purple">Purple</option>
+            </select>
         </div>
 
         <div class="form-group">
             <label for="skor">Score Of Expertise</label>
-            <input type="text" name="skor" class="form-control" id="skor" placeholder="Score Of Skill" required>
+            <input type="number" min="1" max="100" name="skor" class="form-control" id="skor" placeholder="Beginner(40), Intermediate(75), Advanced(90)" required>
         </div>
 
         <div class="box-footer">

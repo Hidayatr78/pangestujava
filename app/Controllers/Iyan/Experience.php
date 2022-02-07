@@ -19,9 +19,10 @@ class Experience extends BaseController
         $this->Pengalaman_model = new Pengalaman_model();
     }
 
-    //Halaman utama dasbor
+    //Halaman utama Pengalaman
     public function index()
     {
+        //load function model
         $biodata = $this->Biodata_model->listing();
         $konfigurasi = $this->Konfigurasi_model->listing();
         $pengalaman = $this->Pengalaman_model->listing();
@@ -29,12 +30,13 @@ class Experience extends BaseController
             'title'         => 'Experience',
             'web'           => 'PangestuJava',
             'jenis'         => 'Table Experience',
-            'pengalaman'      => $pengalaman,
+            'pengalaman'    => $pengalaman,
             'konfigurasi'   => $konfigurasi,
             'biodata'       => $biodata,
+            // load view pengalaman
             'isi'           => 'iyan/experience/list',
-            'validation'    => $this->validator
         );
+        //load view template
         return view('iyan/layout/wrapper', $data);
     }
 
@@ -71,32 +73,30 @@ class Experience extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function edit($deskripsi)
+    public function edit($institusi)
     {
-        $pengalaman = $this->Pengalaman_model->detail_data($deskripsi);
+        $pengalaman = $this->Pengalaman_model->detail_data($institusi);
         $biodata = $this->Biodata_model->listing();
         $konfigurasi = $this->Konfigurasi_model->listing();
         if ($this->request->getMethod() == 'post') {
             $i              = $this->request;
             $data = array(
-                'id_pengalaman'     => $i->getPost('id_pengalaman'),
-                'bidang'            => $i->getPost('bidang'),
-                'institusi'         => $i->getPost('institusi'),
-                'thn_masuk'         => $i->getPost('tahun'),
-                'deskripsi'         => $i->getPost('deskripsi')
+                'id_pengalaman' => $i->getPost('id'),
+                'bidang'        => $i->getPost('bidang'),
+                'institusi'     => $i->getPost('institusi'),
+                'thn_masuk'     => $i->getPost('tahun'),
+                'deskripsi'     => $i->getPost('deskripsi')
             );
             $this->Pengalaman_model->edit($data);
             session()->setflashdata('pesan', 'Successfully Updated Data');
             return redirect()->to(base_url('iyan/experience'));
-        } else {
-            $data['validation'] = $this->validator;
         }
         //Jika tidak valid
         $data = array(
             'title'         => 'Experience',
             'web'           => 'PangestuJava',
             'jenis'         => 'Edit Experience: ' . $pengalaman['institusi'],
-            'pengalaman'       => $pengalaman,
+            'pengalaman'    => $pengalaman,
             'konfigurasi'   => $konfigurasi,
             'biodata'       => $biodata,
             'isi'           => 'iyan/experience/edit',
@@ -105,11 +105,10 @@ class Experience extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function delete($deskripsi)
+    public function delete($institusi)
     {
         $data = array(
-            // 'pengalaman'       => $pengalaman,
-            'deskripsi'     => $deskripsi
+            'institusi'     => $institusi
         );
         $this->Pengalaman_model->hapus($data);
         session()->setflashdata('pesan', 'Successfully Delete Data');

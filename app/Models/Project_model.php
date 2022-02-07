@@ -22,9 +22,19 @@ class Project_model extends Model
     public function listing()
     {
         return $this->db->table('project')
+            ->join('kategori_project', 'kategori_project.id_kategori = project.id_kategori', 'left')
             ->orderBy('id_project', 'DESC')
             ->get()->getResultArray();
     }
+
+    public function listing2()
+    {
+        return $this->db->table('gambar')
+            ->join('project', 'project.id_project = gambar.id_project', 'left')
+            ->orderBy('id_gambar', 'DESC')
+            ->get()->getResultArray();
+    }
+
     public function edit($data)
     {
         $this->db->table('project')->where('id_project', $data['id_project'])->update($data);
@@ -33,39 +43,23 @@ class Project_model extends Model
     public function detail_data($id_project)
     {
         return $this->db->table('project')
+            ->join('kategori_project', 'kategori_project.id_kategori = project.id_kategori', 'left')
             ->where('id_project', $id_project)
             ->get()
             ->getRowArray();
     }
 
-    public function detail_data2($deskripsi_project)
-    {
-        return $this->db->table('project')
-            ->where('deskripsi_project', $deskripsi_project)
-            ->get()
-            ->getRowArray();
-    }
-
-    public function detail_data3($id_gambar)
+    public function detail_data2($id_gambar)
     {
         return $this->db->table('gambar')
             ->where('id_gambar', $id_gambar)
-            ->orderBy('id_gambar', 'desc')
-            ->get()
-            ->getRowArray();
-    }
-
-    public function detail_data4($id_project)
-    {
-        return $this->db->table('gambar')
-            ->where('id_project', $id_project)
             ->get()
             ->getRowArray();
     }
 
     public function hapus($data)
     {
-        $this->db->table('project')->where('deskripsi_project', $data['deskripsi_project'])->delete($data);
+        $this->db->table('project')->where('id_project', $data['id_project'])->delete($data);
     }
 
     public function delete_gambar($data)
@@ -87,7 +81,6 @@ class Project_model extends Model
     {
         return $this->db->table('gambar')
             ->where('id_project', $id_project)
-            ->orderBy('id_gambar', 'desc')
             ->get()
             ->getResultArray();
     }

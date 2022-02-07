@@ -72,11 +72,36 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a href="<?= base_url('iyan/project') ?>" class="nav-link">
+                        <a href="#" class="nav-link">
                             <lord-icon src="https://cdn.lordicon.com/jvucoldz.json" trigger="loop" colors="primary:#c2c7d0,secondary:#000000">
                             </lord-icon>
                             <p>
                                 Project
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('iyan/project') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Project</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('iyan/category') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Category Project</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('iyan/contact') ?>" class="nav-link">
+                            <lord-icon src="https://cdn.lordicon.com/uqpazftn.json" trigger="loop" colors="primary:#c2c7d0,secondary:#c2c7d0">
+                            </lord-icon>
+                            <p>
+                                Contact
                             </p>
                         </a>
                     </li>
@@ -100,12 +125,6 @@
                                 <a href="<?= base_url('iyan/configuration/logo') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Logo Configuration</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('iyan/configuration/icon') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Icon Configuration</p>
                                 </a>
                             </li>
                         </ul>

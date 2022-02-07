@@ -39,7 +39,7 @@
 
               <div class="form-group">
                      <label for="deskripsi">Description Of Education</label>
-                     <input type="text" name="deskripsi" class="form-control" id="deskripsi" placeholder="Description Of Education" required>
+                     <textarea class="textarea form-control" name="deskripsi" id="deskripsi" placeholder="Description For Education"></textarea>
               </div>
 
               <div class="box-footer">

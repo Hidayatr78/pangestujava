@@ -1,5 +1,7 @@
 <!-- /.card-header -->
 <div class="card-body">
+
+    <!-- Pesan Jika Sukses Upload -->
     <?php
     if (session()->getflashdata('pesan')) {
         echo '<div class="alert alert-warning" role="alert">';
@@ -7,13 +9,9 @@
         echo '</div>';
     }
     ?>
-    <?php
-    if (session()->getflashdata('sukses')) {
-        echo '<div class="alert alert-success" role="alert">';
-        echo session()->getflashdata('sukses');
-        echo '</div>';
-    }
-    ?>
+    <!-- End Pesan Jika Sukses -->
+
+    <!-- All Tampilan Keahlian -->
     <table id="example1" class="table table-bordered table-striped">
         <div class="box-tools pull-right text-right">
             <button type=" button" class="btn btn-box-tool" data-widget="add">
@@ -32,6 +30,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Lopping data keahlian -->
             <?php $no = 1;
             foreach ($keahlian as $keahlian) {
             ?>
@@ -47,5 +46,7 @@
                 </tr>
             <?php $no++;
             } ?>
+            <!-- End Looping -->
         </tbody>
     </table>
+    <!-- End Tampilan Keahlian -->

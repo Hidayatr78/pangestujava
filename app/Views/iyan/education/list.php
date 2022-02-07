@@ -41,8 +41,8 @@
                                    <td><?= $sekolah['jurusan'] ?></td>
                                    <td><?= $sekolah['rata'] ?></td>
                                    <td>
-                                          <a href="<?php echo base_url('iyan/education/edit/' . $sekolah['deskripsi']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                          <a href="<?php echo base_url('iyan/education/delete/' . $sekolah['deskripsi']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
+                                          <a href="<?php echo base_url('iyan/education/edit/' . $sekolah['nama_sekolah']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                          <a href="<?php echo base_url('iyan/education/delete/' . $sekolah['nama_sekolah']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
                                    </td>
                             </tr>
                      <?php $no++;

@@ -17,34 +17,31 @@ class Sekolah_model extends Model
         $this->table = $this->db->table('sekolah');
     }
 
-    //Login user
+    //Menampilkan Semua Isi Database
     public function listing()
     {
         return $this->db->table('sekolah')
             ->orderBy('id_sekolah', 'DESC')
             ->get()->getResultArray();
     }
-    public function listing2()
-    {
-        return $this->db->table('sekolah')
-            ->get()->getRowArray();
-    }
+
+    //Untuk mengubah data/edit
     public function edit($data)
     {
         $this->db->table('sekolah')->where('id_sekolah', $data['id_sekolah'])->update($data);
     }
 
-    public function detail_data($deskripsi)
+    public function detail_data($nama_sekolah)
     {
         return $this->db->table('sekolah')
-            ->where('deskripsi', $deskripsi)
+            ->where('nama_sekolah', $nama_sekolah)
             ->get()
             ->getRowArray();
     }
 
     public function hapus($data)
     {
-        $this->db->table('sekolah')->where('deskripsi', $data['deskripsi'])->delete($data);
+        $this->db->table('sekolah')->where('nama_sekolah', $data['nama_sekolah'])->delete($data);
     }
 
     public function tambah($data)

@@ -12,19 +12,25 @@ class Biodata extends BaseController
     public function __construct()
     {
         helper('form', 'image_helper');
+        //load model
         $this->Konfigurasi_model = new Konfigurasi_model();
         $this->Biodata_model = new Biodata_model();
     }
     //Halaman utama dasbor
     public function index()
     {
+        //memanggil function di model
         $konfigurasi = $this->Konfigurasi_model->listing();
         $biodata = $this->Biodata_model->listing();
         $id_biodata = $this->request->getPost('id');
+        //reguest Post
+        $i              = $this->request;
         if ($this->request->getMethod() == 'post') {
+            //validasion
             $rules = [
                 'gambar' => [
-                    'rules'  => 'mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,40000]|is_image[gambar]|max_dims[gambar,500,500]',
+                    'label'  => 'gambar',
+                    'rules'  => 'mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,40000]|is_image[gambar]|max_dims[gambar,2000,2000]',
                     'errors' => [
                         'mime_in'  => 'Not a Picture !!!',
                         'max_size' => 'Oversize !!!',
@@ -34,22 +40,34 @@ class Biodata extends BaseController
                 ]
             ];
             if ($this->validate($rules)) {
-                $files = $this->request->getFiles();
+                //penyimpanan file gambar
                 $path = "./upload/image/bio/";
                 $file = $this->request->getFile('gambar');
-                if (!empty($files['gambar'])) {
+                if ($file->getError() == 4) {
+                    //masukan ke database tanpa gambar
+                    $data = array(
+                        'id_biodata'                    => $id_biodata,
+                        'panggilan'                     => $i->getPost('panggilan'),
+                        'saya'                          => $i->getPost('about'),
+                        'alamat'                        => $i->getPost('alamat'),
+                        'email'                         => $i->getPost('email'),
+                        'telpon'                        => $i->getPost('telpon'),
+                        'fb'                            => $i->getPost('fb'),
+                        'ig'                            => $i->getPost('ig'),
+                        'linked'                        => $i->getPost('linked'),
+                        'github'                        => $i->getPost('github')
+                    );
+                } else {
+                    //memasukan data ke database dengan gambar
+                    $file = $this->request->getFile('gambar');
                     $user = $this->Biodata_model->detail_data($id_biodata);
                     if ($user['gambar'] != "") {
+                        //hapus gambar sebelumnya
                         unlink('upload/image/bio/' . $user['gambar']);
                     }
-                    foreach ($files['gambar'] as $file) {
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $file->move($path);
-                            $fileName = $file->getName();
-                            $data['gambar'] = $fileName;
-                        }
-                    }
-                    $i              = $this->request;
+                    $file->move($path);
+                    $fileName = $file->getName();
+                    $data['gambar'] = $fileName;
                     $data = array(
                         'id_biodata'                    => $id_biodata,
                         'panggilan'                     => $i->getPost('panggilan'),
@@ -63,21 +81,8 @@ class Biodata extends BaseController
                         'github'                        => $i->getPost('github'),
                         'gambar'                        => $file->getName()
                     );
-                } else {
-                    $i              = $this->request;
-                    $data = array(
-                        'id_biodata'                    => $id_biodata,
-                        'panggilan'                     => $i->getPost('panggilan'),
-                        'saya'                          => $i->getPost('about'),
-                        'alamat'                        => $i->getPost('alamat'),
-                        'email'                         => $i->getPost('email'),
-                        'telpon'                        => $i->getPost('telpon'),
-                        'fb'                            => $i->getPost('fb'),
-                        'ig'                            => $i->getPost('ig'),
-                        'linked'                        => $i->getPost('linked'),
-                        'github'                        => $i->getPost('github')
-                    );
                 }
+                //load ke model
                 $this->Biodata_model->edit($data);
                 session()->setflashdata('pesan', 'Successfully Updated Data');
                 return redirect()->to(base_url('iyan/biodata'));
@@ -101,10 +106,12 @@ class Biodata extends BaseController
         $konfigurasi = $this->Konfigurasi_model->listing();
         $biodata = $this->Biodata_model->listing();
         $id_biodata = $this->request->getPost('id');
+        $i              = $this->request;
         if ($this->request->getMethod() == 'post') {
             $rules = [
                 'profil' => [
-                    'rules'  => 'mime_in[profil,image/jpg,image/jpeg,image/png]|max_size[profil,40000]|is_image[profil]',
+                    'label'  => 'profil',
+                    'rules'  => 'mime_in[profil,image/jpg,image/jpeg,image/png]|max_size[profil,40000]|is_image[profil]|max_dims[profil,500,500]',
                     'errors' => [
                         'mime_in'  => 'Not a Picture !!!',
                         'max_size' => 'Oversize !!!',
@@ -114,36 +121,30 @@ class Biodata extends BaseController
                 ]
             ];
             if ($this->validate($rules)) {
-                $files = $this->request->getFiles();
                 $path = "./upload/image/bio/";
                 $file = $this->request->getFile('profil');
-                if (!empty($files['profil'])) {
+                if ($file->getError() == 4) {
+                    $data = array(
+                        'id_biodata'                    => $id_biodata,
+                        'nama'                          => $i->getPost('nama'),
+                        'ahli'                          => $i->getPost('ahli'),
+                        'link'                          => $i->getPost('link')
+                    );
+                } else {
+                    $file = $this->request->getFile('profil');
                     $user = $this->Biodata_model->detail_data($id_biodata);
                     if ($user['profil'] != "") {
                         unlink('upload/image/bio/' . $user['profil']);
                     }
-                    foreach ($files['profil'] as $file) {
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $file->move($path);
-                            $fileName = $file->getName();
-                            $data['profil'] = $fileName;
-                        }
-                    }
-                    $i              = $this->request;
+                    $file->move($path);
+                    $fileName = $file->getName();
+                    $data['profil'] = $fileName;
                     $data = array(
-                        'id_biodata'               => $id_biodata,
-                        'nama'                     => $i->getPost('nama'),
-                        'ahli'                     => $i->getPost('ahli'),
-                        'link'                     => $i->getPost('link'),
-                        'profil'                   => $file->getName()
-                    );
-                } else {
-                    $i              = $this->request;
-                    $data = array(
-                        'id_biodata'               => $id_biodata,
-                        'nama'                     => $i->getPost('nama'),
-                        'ahli'                     => $i->getPost('ahli'),
-                        'link'                     => $i->getPost('link')
+                        'id_biodata'                    => $id_biodata,
+                        'nama'                          => $i->getPost('nama'),
+                        'ahli'                          => $i->getPost('ahli'),
+                        'link'                          => $i->getPost('link'),
+                        'profil'                        => $file->getName()
                     );
                 }
                 $this->Biodata_model->edit($data);

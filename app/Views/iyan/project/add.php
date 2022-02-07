@@ -30,8 +30,18 @@
         </div>
 
         <div class="form-group">
-            <label for="panggilan">Description Of Project</label>
-            <input type="text" name="deskripsi" class="form-control" id="panggilan" placeholder="Description Of Project" required>
+            <label>Category</label>
+            <select class="custom-select" name="id_kategori">
+                <option value="">--Select Category--</option>
+                <?php foreach ($kategori as $kategori) { ?>
+                    <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama_kategori'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="panggilan">Link Project</label>
+            <input type="text" name="link_project" class="form-control" id="link" placeholder="Link Project" required>
         </div>
 
         <div class="form-group">

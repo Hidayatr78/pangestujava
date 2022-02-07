@@ -8,13 +8,18 @@
     ?>
     <!-- form start -->
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" name="id" value="<?= $biodata['id_biodata']; ?>">
+        <input type="hidden" name="id" value="<?= $biodata['id_biodata']; ?>">
 
         <?php if (isset($validation)) : ?>
             <div class="alert alert-danger" role="alert">
                 <?= $validation->listErrors(); ?>
             </div>
         <?php endif; ?>
+
+        <div class="form-group">
+            <label for="nama">Name</label>
+            <input type="text" name="nama" class="form-control" id="nama" placeholder="Name" value="<?= $biodata['nama']; ?>">
+        </div>
 
         <div class="form-group">
             <label for="panggilan">Nick Name (Call)</label>
@@ -65,7 +70,7 @@
             <label for="gambar">Upload a New Picture</label>
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" multiple name="gambar[]" id="gambar" name="gambar" value="<?= $biodata['gambar'] ?>">
+                    <input type="file" id="gambar" name="gambar" value="<?= $biodata['gambar'] ?>">
                 </div>
             </div>
         </div>

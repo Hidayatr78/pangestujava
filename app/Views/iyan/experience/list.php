@@ -41,8 +41,8 @@
                                    <td><?= $pengalaman['bidang'] ?></td>
                                    <td><?= $pengalaman['thn_masuk'] ?></td>
                                    <td>
-                                          <a href="<?php echo base_url('iyan/experience/edit/' . $pengalaman['deskripsi']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                          <a href="<?php echo base_url('iyan/experience/delete/' . $pengalaman['deskripsi']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
+                                          <a href="<?php echo base_url('iyan/experience/edit/' . $pengalaman['institusi']) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                          <a href="<?php echo base_url('iyan/experience/delete/' . $pengalaman['institusi']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i> Delete</a>
                                    </td>
                             </tr>
                      <?php $no++;

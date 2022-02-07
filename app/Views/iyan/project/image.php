@@ -1,6 +1,7 @@
 <div class="card-body">
     <!-- form start -->
     <form action="<?php echo base_url('iyan/project/image/' . $project['id_project']); ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $project['id_project']; ?>">
 
         <?php if (isset($validation)) : ?>
             <div class="alert alert-danger" role="alert">

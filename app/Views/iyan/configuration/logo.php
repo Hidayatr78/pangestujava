@@ -10,7 +10,7 @@
     <!-- form start -->
     <?php echo form_open_multipart('iyan/configuration/ubah') ?>
     <div class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" name="id" value="<?= $konfigurasi['id_konfigurasi']; ?>">
+        <input type="hidden" name="id" value="<?= $konfigurasi['id_konfigurasi']; ?>">
 
         <?php
         $errors = session()->getflashdata('errors');
@@ -39,7 +39,7 @@
             <label for="logo">Upload a New Logo</label>
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" multiple name="logo[]" id="logo" name="logo[]" value="<?= $konfigurasi['logo']; ?>">
+                    <input type="file" id="logo" name="logo" value="<?= $konfigurasi['logo']; ?>">
                 </div>
             </div>
         </div>

@@ -1,9 +1,23 @@
 <!-- Header Start -->
+<?php if (isset($validation)) : ?>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <?= $validation->listErrors(); ?>
+        </ul>
+    </div>
+<?php endif; ?>
+<?php
+if (session()->getflashdata('pesan')) {
+    echo '<div class="alert alert-warning" role="alert">';
+    echo session()->getflashdata('pesan');
+    echo '</div>';
+}
+?>
 <div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
-                <img class="img-fluid w-100 rounded-circle shadow-sm" src="<?= base_url('/upload/image/bio/' . $biodata['gambar']) ?>" alt="">
+                <img class="img-fluid w-100 rounded-circle shadow-sm" src="<?= base_url('/upload/image/bio/' . $biodata['profil']) ?>" alt="">
             </div>
             <div class="col-lg-7 text-center text-lg-left">
                 <h3 class="text-white font-weight-normal mb-3">I'm</h3>
@@ -12,7 +26,7 @@
                 <div class="typed-text d-none"><?= $biodata['ahli']; ?></div>
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                     <!-- <a href="#about" class="btn btn-outline-light mr-5" id="navbarCollapse">About Me</a> -->
-                    <button type="button" class="btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/<?= $biodata['link']; ?>" data-target="#videoModal">
+                    <button type="button" class="btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/<?= $biodata['link_yt']; ?>" data-target="#videoModal">
                         <span></span>
                     </button>
                     <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>

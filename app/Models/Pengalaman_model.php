@@ -17,34 +17,31 @@ class Pengalaman_model extends Model
         $this->table = $this->db->table('pengalaman');
     }
 
-    //Login user
+    //Menampilkan Semua Isi Database
     public function listing()
     {
         return $this->db->table('pengalaman')
             ->orderBy('id_pengalaman', 'DESC')
             ->get()->getResultArray();
     }
-    public function listing2()
-    {
-        return $this->db->table('pengalaman')
-            ->get()->getRowArray();
-    }
+
+    //Untuk mengubah data/edit
     public function edit($data)
     {
         $this->db->table('pengalaman')->where('id_pengalaman', $data['id_pengalaman'])->update($data);
     }
 
-    public function detail_data($deskripsi)
+    public function detail_data($institusi)
     {
         return $this->db->table('pengalaman')
-            ->where('deskripsi', $deskripsi)
+            ->where('institusi', $institusi)
             ->get()
             ->getRowArray();
     }
 
     public function hapus($data)
     {
-        $this->db->table('pengalaman')->where('deskripsi', $data['deskripsi'])->delete($data);
+        $this->db->table('pengalaman')->where('institusi', $data['institusi'])->delete($data);
     }
 
     public function tambah($data)

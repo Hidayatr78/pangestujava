@@ -46,10 +46,10 @@ $routes->get('/iyan/configuration', 'Iyan/Configuration::index', ['filter' => 'f
 $routes->get('/iyan/configuration/logo', 'Iyan/Configuration::logo', ['filter' => 'filterauth']);
 $routes->get('/iyan/configuration/icon', 'Iyan/Configuration::icon', ['filter' => 'filterauth']);
 
-$routes->get('/iyan/expertise', 'Iyan/Expertise::index', ['filter' => 'filterauth']);
-$routes->get('/iyan/expertise/delete', 'Iyan/Expertise::delete', ['filter' => 'filterauth']);
-$routes->get('/iyan/expertise/edit', 'Iyan/Expertise::edit', ['filter' => 'filterauth']);
-$routes->get('/iyan/expertise/add', 'Iyan/Expertise::add', ['filter' => 'filterauth']);
+$routes->get('/iyan/skill', 'Iyan/Skill::index', ['filter' => 'filterauth']);
+$routes->get('/iyan/skill/delete', 'Iyan/Skill::delete', ['filter' => 'filterauth']);
+$routes->get('/iyan/skill/edit', 'Iyan/Skill::edit', ['filter' => 'filterauth']);
+$routes->get('/iyan/skill/add', 'Iyan/Skill::add', ['filter' => 'filterauth']);
 
 $routes->get('/iyan/project', 'Iyan/Project::index', ['filter' => 'filterauth']);
 $routes->get('/iyan/project/delete', 'Iyan/Project::delete', ['filter' => 'filterauth']);

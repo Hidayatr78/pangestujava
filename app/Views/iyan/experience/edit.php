@@ -7,8 +7,8 @@
     }
     ?>
     <!-- form start -->
-    <form action="<?php echo base_url('iyan/experience/edit/' . $pengalaman['deskripsi']); ?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id_pengalaman" value="<?= $pengalaman['id_pengalaman']; ?>">
+    <form action="<?php echo base_url('iyan/experience/edit/' . $pengalaman['institusi']); ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $pengalaman['id_pengalaman']; ?>">
 
         <div class="form-group">
             <label for="institusi">Company Name</label>
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="deskripsi">Description Of Education</label>
-            <input type="text" name="deskripsi" class="form-control" id="deskripsi" placeholder="Description Of Education" value="<?= $pengalaman['deskripsi']; ?>" required>
+            <textarea class="textarea form-control" name="deskripsi" id="deskripsi" placeholder="Description For Experience"><?= $pengalaman['deskripsi']; ?></textarea>
         </div>
 
         <div class="box-footer">

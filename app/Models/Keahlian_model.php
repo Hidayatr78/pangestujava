@@ -8,45 +8,43 @@ class Keahlian_model extends Model
 {
     protected $table = "keahlian";
     protected $primaryKey = "id_keahlian";
-
     public function __construct()
     {
-
         parent::__construct();
         // $db = \Config\Database::connect();
         $this->table = $this->db->table('keahlian');
     }
 
-    //Login user
+    //Menampilkan Semua Isi Database
     public function listing()
     {
         return $this->db->table('keahlian')
             ->orderBy('id_keahlian', 'DESC')
             ->get()->getResultArray();
     }
-    public function listing2()
-    {
-        return $this->db->table('keahlian')
-            ->get()->getRowArray();
-    }
+
+    //Untuk mengubah data/edit
     public function edit($data)
     {
         $this->db->table('keahlian')->where('id_keahlian', $data['id_keahlian'])->update($data);
     }
 
-    public function detail_data($deskripsi)
+    //Menampilkan detail keahlian
+    public function detail_data($nama_keahlian)
     {
         return $this->db->table('keahlian')
-            ->where('deskripsi', $deskripsi)
+            ->where('nama_keahlian', $nama_keahlian)
             ->get()
             ->getRowArray();
     }
 
+    //Hapus field database
     public function hapus($data)
     {
         $this->db->table('keahlian')->where('nama_keahlian', $data['nama_keahlian'])->delete($data);
     }
 
+    //Menambah field database
     public function tambah($data)
     {
         $this->db->table('keahlian')->insert($data);

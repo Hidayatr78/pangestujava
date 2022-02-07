@@ -6,65 +6,22 @@
             <h1 class="position-absolute text-uppercase text-primary">My Skills</h1>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">HTML</h6>
-                        <h6 class="font-weight-bold">95%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">CSS</h6>
-                        <h6 class="font-weight-bold">85%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+            <?php
+            foreach ($keahlian as $keahlian) {
+            ?>
+                <div class="col-md-6 justify-content-between">
+                    <div class="skill mb-4">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-bold"><?= $keahlian['nama_keahlian']; ?></h6>
+                            <h6 class="font-weight-bold">(<?= $keahlian['ahli']; ?>)</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar <?= $keahlian['warna']; ?>" role="progressbar" aria-valuenow="<?= $keahlian['skor']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">PHP</h6>
-                        <h6 class="font-weight-bold">90%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Javascript</h6>
-                        <h6 class="font-weight-bold">90%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Angular JS</h6>
-                        <h6 class="font-weight-bold">95%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Wordpress</h6>
-                        <h6 class="font-weight-bold">87%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
+            <?php
+            } ?>
         </div>
     </div>
-</div>
-<!-- Skill End -->
+    <!-- Skill End -->

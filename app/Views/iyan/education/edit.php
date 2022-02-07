@@ -7,8 +7,8 @@
     }
     ?>
     <!-- form start -->
-    <form action="<?php echo base_url('iyan/education/edit/' . $sekolah['deskripsi']); ?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id_sekolah" value="<?= $sekolah['id_sekolah']; ?>">
+    <form action="<?php echo base_url('iyan/education/edit/' . $sekolah['nama_sekolah']); ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $sekolah['id_sekolah']; ?>">
 
         <div class="form-group">
             <label for="nama">School Name</label>
@@ -32,7 +32,7 @@
 
         <div class="form-group">
             <label for="deskripsi">Description Of Education</label>
-            <input type="text" name="deskripsi" class="form-control" id="deskripsi" placeholder="Description Of Education" value="<?= $sekolah['deskripsi']; ?>" required>
+            <textarea class="textarea form-control" name="deskripsi" id="deskripsi" placeholder="Description For Education"><?= $sekolah['deskripsi']; ?></textarea>
         </div>
 
         <div class="box-footer">

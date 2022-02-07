@@ -45,6 +45,7 @@ class Education extends BaseController
         $sekolah = $this->Sekolah_model->listing();
         if ($this->request->getMethod() == 'post') {
             $i              = $this->request;
+            $data = $this->request->getPost('id_sekolah');
             $data = array(
                 'nama_sekolah'        => $i->getPost('nama_sekolah'),
                 'jurusan'             => $i->getPost('jurusan'),
@@ -72,26 +73,24 @@ class Education extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function edit($deskripsi)
+    public function edit($nama_sekolah)
     {
-        $sekolah = $this->Sekolah_model->detail_data($deskripsi);
+        $sekolah = $this->Sekolah_model->detail_data($nama_sekolah);
         $biodata = $this->Biodata_model->listing();
         $konfigurasi = $this->Konfigurasi_model->listing();
         if ($this->request->getMethod() == 'post') {
             $i              = $this->request;
             $data = array(
-                'id_sekolah'          => $i->getPost('id_sekolah'),
-                'nama_sekolah'        => $i->getPost('nama_sekolah'),
-                'jurusan'             => $i->getPost('jurusan'),
-                'rata'                => $i->getPost('rata'),
-                'tahun'               => $i->getPost('tahun'),
-                'deskripsi'           => $i->getPost('deskripsi')
+                'id_sekolah'    => $i->getPost('id'),
+                'nama_sekolah'  => $i->getPost('nama_sekolah'),
+                'jurusan'       => $i->getPost('jurusan'),
+                'rata'          => $i->getPost('rata'),
+                'tahun'         => $i->getPost('tahun'),
+                'deskripsi'     => $i->getPost('deskripsi')
             );
             $this->Sekolah_model->edit($data);
             session()->setflashdata('pesan', 'Successfully Updated Data');
             return redirect()->to(base_url('iyan/education'));
-        } else {
-            $data['validation'] = $this->validator;
         }
         //Jika tidak valid
         $data = array(
@@ -107,11 +106,11 @@ class Education extends BaseController
         return view('iyan/layout/wrapper', $data);
     }
 
-    public function delete($deskripsi)
+    public function delete($nama_sekolah)
     {
         $data = array(
             // 'sekolah'       => $sekolah,
-            'deskripsi'     => $deskripsi
+            'nama_sekolah'     => $nama_sekolah
         );
         $this->Sekolah_model->hapus($data);
         session()->setflashdata('pesan', 'Successfully Delete Data');
